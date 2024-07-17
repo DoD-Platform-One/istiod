@@ -1,0 +1,11 @@
+apiVersion: kpt.dev/v1alpha1
+kind: Kptfile
+metadata:
+  name: istio-discovery
+upstream:
+  type: git
+  git:
+    commit: 204da5ba47f295a8dc56936333e692f6a8707649
+    repo: https://github.com/istio/istio
+    directory: /manifests/charts/istio-control/istio-discovery
+    ref: 1.22.2
