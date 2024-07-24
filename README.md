@@ -1,6 +1,6 @@
 # istiod
 
-![Version: 1.22.2-bb.0](https://img.shields.io/badge/Version-1.22.2--bb.0-informational?style=flat-square) ![AppVersion: 1.22.2](https://img.shields.io/badge/AppVersion-1.22.2-informational?style=flat-square)
+![Version: 1.22.2-bb.1](https://img.shields.io/badge/Version-1.22.2--bb.1-informational?style=flat-square) ![AppVersion: 1.22.2](https://img.shields.io/badge/AppVersion-1.22.2-informational?style=flat-square)
 
 Helm chart for istio control plane
 
@@ -34,9 +34,6 @@ helm install istiod chart/
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| image.repository | string | `"registry1.dso.mil/ironbank/opensource/istio/pilot"` |  |
-| image.tag | string | `"1.22.2"` |  |
-| image.pullPolicy | string | `"IfNotPresent"` |  |
 | defaults.pilot.autoscaleEnabled | bool | `true` |  |
 | defaults.pilot.autoscaleMin | int | `1` |  |
 | defaults.pilot.autoscaleMax | int | `5` |  |
@@ -44,8 +41,8 @@ helm install istiod chart/
 | defaults.pilot.replicaCount | int | `1` |  |
 | defaults.pilot.rollingMaxSurge | string | `"100%"` |  |
 | defaults.pilot.rollingMaxUnavailable | string | `"25%"` |  |
-| defaults.pilot.hub | string | `""` |  |
-| defaults.pilot.tag | string | `""` |  |
+| defaults.pilot.hub | string | `"registry1.dso.mil/ironbank/opensource/istio"` |  |
+| defaults.pilot.tag | string | `"1.22.2"` |  |
 | defaults.pilot.variant | string | `""` |  |
 | defaults.pilot.image | string | `"pilot"` |  |
 | defaults.pilot.traceSampling | float | `1` |  |
@@ -105,7 +102,7 @@ helm install istiod chart/
 | defaults.global.tag | string | `"latest"` |  |
 | defaults.global.variant | string | `""` |  |
 | defaults.global.imagePullPolicy | string | `""` |  |
-| defaults.global.imagePullSecrets | list | `[]` |  |
+| defaults.global.imagePullSecrets[0] | string | `"private-registry"` |  |
 | defaults.global.istiod.enableAnalysis | bool | `false` |  |
 | defaults.global.logAsJson | bool | `false` |  |
 | defaults.global.logging.level | string | `"default:info"` |  |
