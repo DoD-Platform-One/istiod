@@ -1,6 +1,6 @@
 apiVersion: v1
 name: istiod
-version: 1.22.2-bb.1
+version: 1.22.2-bb.2
 appVersion: 1.22.2
 description: Helm chart for istio control plane
 keywords:
@@ -10,6 +10,5 @@ keywords:
 sources:
   - https://github.com/istio/istio
 annotations:
-  helm.sh/images: |
-    - name: pilot
-      image: registry1.dso.mil/ironbank/opensource/istio/pilot:1.22.2
+  bigbang.dev/upstreamReleaseNotesMarkdown: |
+    - [Find upstream chart's release notes and CHANGELOG here](https://istio.io/latest/news/releases/1.22.x/announcing-1.22.2/)

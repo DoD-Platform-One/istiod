@@ -12,8 +12,8 @@ defaults:
     rollingMaxSurge: 100%
     rollingMaxUnavailable: 25%
 
-    hub: "registry1.dso.mil/ironbank/opensource/istio"
-    tag: "1.22.2"
+    hub: ""
+    tag: ""
     variant: ""
 
     # Can be a full hub/image:tag
@@ -233,9 +233,9 @@ defaults:
     # Default hub for Istio images.
     # Releases are published to docker hub under 'istio' project.
     # Dev builds from prow are on gcr.io
-    hub: gcr.io/istio-testing
+    hub: "registry1.dso.mil/ironbank/opensource/istio"
     # Default tag for Istio images.
-    tag: latest
+    tag: "1.22.2"
     # Variant of the image to use.
     # Currently supported are: [debug, distroless]
     variant: ""
@@ -245,7 +245,7 @@ defaults:
     imagePullPolicy: ""
 
     # Must be set for any cluster configured with private docker registry.
-    # This secret will need to be manually created if this chart is deployed individually
+    # This secret will need to be manually created if this chart is deployed outside of the BB umbrella chart
     imagePullSecrets: 
       - private-registry
 
