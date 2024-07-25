@@ -1,12 +1,17 @@
+<!-- Warning: Do not manually edit this file. See notes on gluon + helm-docs at the end of this file for more information. -->
 # istiod
 
-![Version: 1.22.2-bb.1](https://img.shields.io/badge/Version-1.22.2--bb.1-informational?style=flat-square) ![AppVersion: 1.22.2](https://img.shields.io/badge/AppVersion-1.22.2-informational?style=flat-square)
+![Version: 1.22.2-bb.2](https://img.shields.io/badge/Version-1.22.2--bb.2-informational?style=flat-square) ![AppVersion: 1.22.2](https://img.shields.io/badge/AppVersion-1.22.2-informational?style=flat-square)
 
 Helm chart for istio control plane
 
 ## Upstream References
 
 * <https://github.com/istio/istio>
+
+### Upstream Release Notes
+
+- [Find upstream chart's release notes and CHANGELOG here](https://istio.io/latest/news/releases/1.22.x/announcing-1.22.2/)
 
 ## Learn More
 * [Application Overview](docs/overview.md)
@@ -41,8 +46,8 @@ helm install istiod chart/
 | defaults.pilot.replicaCount | int | `1` |  |
 | defaults.pilot.rollingMaxSurge | string | `"100%"` |  |
 | defaults.pilot.rollingMaxUnavailable | string | `"25%"` |  |
-| defaults.pilot.hub | string | `"registry1.dso.mil/ironbank/opensource/istio"` |  |
-| defaults.pilot.tag | string | `"1.22.2"` |  |
+| defaults.pilot.hub | string | `""` |  |
+| defaults.pilot.tag | string | `""` |  |
 | defaults.pilot.variant | string | `""` |  |
 | defaults.pilot.image | string | `"pilot"` |  |
 | defaults.pilot.traceSampling | float | `1` |  |
@@ -98,8 +103,8 @@ helm install istiod chart/
 | defaults.global.certSigners | list | `[]` |  |
 | defaults.global.defaultPodDisruptionBudget.enabled | bool | `true` |  |
 | defaults.global.defaultResources.requests.cpu | string | `"10m"` |  |
-| defaults.global.hub | string | `"gcr.io/istio-testing"` |  |
-| defaults.global.tag | string | `"latest"` |  |
+| defaults.global.hub | string | `"registry1.dso.mil/ironbank/opensource/istio"` |  |
+| defaults.global.tag | string | `"1.22.2"` |  |
 | defaults.global.variant | string | `""` |  |
 | defaults.global.imagePullPolicy | string | `""` |  |
 | defaults.global.imagePullSecrets[0] | string | `"private-registry"` |  |
@@ -158,3 +163,8 @@ helm install istiod chart/
 ## Contributing
 
 Please see the [contributing guide](./CONTRIBUTING.md) if you are interested in contributing.
+
+---
+
+_This file is programatically generated using `helm-docs` and some BigBang-specific templates. The `gluon` repository has [instructions for regenerating package READMEs](https://repo1.dso.mil/big-bang/product/packages/gluon/-/blob/master/docs/bb-package-readme.md)._
+
