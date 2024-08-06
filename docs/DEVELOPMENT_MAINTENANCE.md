@@ -21,4 +21,3 @@ Changes to default values:
 - defaults.global.hub set to `registry1.dso.mil/ironbank/opensource/istio` # <-- Global setting for Istiod and Gateway
 - defaults.global.tag set to  `chart version`  # <-- Global setting for Istiod and Gateway
 - defaults.global.imagePullSecrets add `registry-private` # <-- Global setting for Istiod and Gateway
-- defaults.sidecarInjectorWebhook.enableNamespacesByDefault set to `true`

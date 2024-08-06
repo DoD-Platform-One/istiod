@@ -126,7 +126,7 @@ defaults:
     # This enables injection of sidecar in all namespaces,
     # with the exception of namespaces with "istio-injection:disabled" annotation
     # Only one environment should have this enabled.
-    enableNamespacesByDefault: true
+    enableNamespacesByDefault: false
 
     # Mutations that occur after the sidecar injector are not handled by default, as the Istio sidecar injector is only run
     # once. For example, an OPA sidecar injected after the Istio sidecar will not have it's liveness/readiness probes rewritten.
