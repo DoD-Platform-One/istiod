@@ -4,6 +4,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.22.2-bb.3] - 2024-09-30
+
+### Added
+
+- Added Tetrate TID image support
+- adds defaults.global.enterprise boolean
+- Adds defaults.global.tidHub key
+- Adds defaults.global.tidHub key
+
 ## [1.22.2-bb.2] - 2024-07-25
 
 ### Added

@@ -21,3 +21,12 @@ Changes to default values:
 - defaults.global.hub set to `registry1.dso.mil/ironbank/opensource/istio` # <-- Global setting for Istiod and Gateway
 - defaults.global.tag set to  `chart version`  # <-- Global setting for Istiod and Gateway
 - defaults.global.imagePullSecrets add `registry-private` # <-- Global setting for Istiod and Gateway
+- defaults.global.enterprise boolean added # <-- to enable/disable tetrate image pulls
+- defaults.global.tidHub key added
+- defaults.global.tidHub key added
+
+## chart/templates/deployment.yaml
+- Added Tetrate TID templating around lines 88-90
+
+## chart/files/gateway-injection-template.yaml
+- Added Tetrate TID templating around lines 24-32 # <-- Used by Gateway deployment
