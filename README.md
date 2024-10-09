@@ -1,7 +1,7 @@
 <!-- Warning: Do not manually edit this file. See notes on gluon + helm-docs at the end of this file for more information. -->
 # istiod
 
-![Version: 1.22.2-bb.2](https://img.shields.io/badge/Version-1.22.2--bb.2-informational?style=flat-square) ![AppVersion: 1.22.2](https://img.shields.io/badge/AppVersion-1.22.2-informational?style=flat-square)
+![Version: 1.22.2-bb.3](https://img.shields.io/badge/Version-1.22.2--bb.3-informational?style=flat-square) ![AppVersion: 1.22.2](https://img.shields.io/badge/AppVersion-1.22.2-informational?style=flat-square)
 
 Helm chart for istio control plane
 
@@ -11,7 +11,7 @@ Helm chart for istio control plane
 
 ### Upstream Release Notes
 
-- [Find upstream chart's release notes and CHANGELOG here](https://istio.io/latest/news/releases/1.22.x/announcing-1.22.2/)
+* [Find upstream chart's release notes and CHANGELOG here](https://istio.io/latest/news/releases/1.22.x/announcing-1.22.2/)
 
 ## Learn More
 * [Application Overview](docs/overview.md)
@@ -106,6 +106,9 @@ helm install istiod chart/
 | defaults.global.hub | string | `"registry1.dso.mil/ironbank/opensource/istio"` |  |
 | defaults.global.tag | string | `"1.22.2"` |  |
 | defaults.global.variant | string | `""` |  |
+| defaults.global.enterprise | bool | `false` | Tetrate Istio Distribution - Tetrate provides FIPs verified Istio and Envoy software and support, validated through the FIPs Boring Crypto module. Find out more from Tetrate - https://www.tetrate.io/tetrate-istio-subscription |
+| defaults.global.tidHub | string | `"registry1.dso.mil/ironbank/tetrate/istio"` |  |
+| defaults.global.tidTag | string | `"1.22.2-tetratefips-v0"` |  |
 | defaults.global.imagePullPolicy | string | `""` |  |
 | defaults.global.imagePullSecrets[0] | string | `"private-registry"` |  |
 | defaults.global.istiod.enableAnalysis | bool | `false` |  |
