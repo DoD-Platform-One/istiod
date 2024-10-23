@@ -49,10 +49,8 @@ spec:
         {{- end }}
         istio.io/dataplane-mode: none
       annotations:
-        {{- if .Values.meshConfig.enablePrometheusMerge }}
         prometheus.io/port: "15014"
         prometheus.io/scrape: "true"
-        {{- end }}
         sidecar.istio.io/inject: "false"
         {{- if .Values.pilot.podAnnotations }}
 {{ toYaml .Values.pilot.podAnnotations | indent 8 }}
@@ -151,6 +149,15 @@ spec:
                 fieldPath: spec.serviceAccountName
           - name: KUBECONFIG
             value: /var/run/secrets/remote/config
+          # If you explicitly told us where ztunnel lives, use that.
+          # Otherwise, assume it lives in our namespace
+          # Also, check for an explicit ENV override (legacy approach) and prefer that
+          # if present
+          {{ $ztTrustedNS := or .Values.pilot.trustedZtunnelNamespace .Release.Namespace }}
+          {{- if not .Values.pilot.env.CA_TRUSTED_NODE_ACCOUNTS }}
+          - name: CA_TRUSTED_NODE_ACCOUNTS
+            value: "{{ $ztTrustedNS }}/ztunnel"
+          {{- end }}
           {{- if .Values.pilot.env }}
           {{- range $key, $val := .Values.pilot.env }}
           - name: {{ $key }}
@@ -160,6 +167,13 @@ spec:
 {{- if .Values.pilot.traceSampling }}
           - name: PILOT_TRACE_SAMPLING
             value: "{{ .Values.pilot.traceSampling }}"
+{{- end }}
+# If externalIstiod is set via Values.Global, then enable the pilot env variable. However, if it's set via Values.pilot.env, then
+# don't set it here to avoid duplication.
+# TODO (nshankar13): Move from Helm chart to code: https://github.com/istio/istio/issues/52449
+{{- if and .Values.global.externalIstiod (not (and .Values.pilot.env .Values.pilot.env.EXTERNAL_ISTIOD)) }}
+          - name: EXTERNAL_ISTIOD
+            value: "{{ .Values.global.externalIstiod }}"
 {{- end }}
           - name: PILOT_ENABLE_ANALYSIS
             value: "{{ .Values.global.istiod.enableAnalysis }}"
