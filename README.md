@@ -1,7 +1,7 @@
 <!-- Warning: Do not manually edit this file. See notes on gluon + helm-docs at the end of this file for more information. -->
 # istiod
 
-![Version: 1.22.2-bb.3](https://img.shields.io/badge/Version-1.22.2--bb.3-informational?style=flat-square) ![AppVersion: 1.22.2](https://img.shields.io/badge/AppVersion-1.22.2-informational?style=flat-square)
+![Version: 1.23.2-bb.0](https://img.shields.io/badge/Version-1.23.2--bb.0-informational?style=flat-square) ![AppVersion: 1.23.2](https://img.shields.io/badge/AppVersion-1.23.2-informational?style=flat-square)
 
 Helm chart for istio control plane
 
@@ -9,20 +9,20 @@ Helm chart for istio control plane
 
 * <https://github.com/istio/istio>
 
-### Upstream Release Notes
+## Upstream Release Notes
 
-* [Find upstream chart's release notes and CHANGELOG here](https://istio.io/latest/news/releases/1.22.x/announcing-1.22.2/)
+- [Find upstream chart's release notes and CHANGELOG here](https://istio.io/latest/news/releases/1.23.x/announcing-1.23.2/)
 
 ## Learn More
-* [Application Overview](docs/overview.md)
-* [Other Documentation](docs/)
+
+- [Application Overview](docs/overview.md)
+- [Other Documentation](docs/)
 
 ## Pre-Requisites
 
-* Kubernetes Cluster deployed
-* Kubernetes config installed in `~/.kube/config`
-* Helm installed
-* [istio-base](https://repo1.dso.mil/big-bang/apps/sandbox/istio-base) installed to `istio-system` namespace
+- Kubernetes Cluster deployed
+- Kubernetes config installed in `~/.kube/config`
+- Helm installed
 
 Install Helm
 
@@ -30,44 +30,12 @@ https://helm.sh/docs/intro/install/
 
 ## Deployment
 
+- Clone down the repository
+- cd into directory
+
 ```bash
-git clone https://repo1.dso.mil/big-bang/apps/sandbox/istiod.git && \
-cd istiod
+helm install istiod chart/
 ```
-```bash
-helm upgrade \
-  --install istiod ./chart \
-  --namespace istio-system
-```
-
-A manual deployment of `istiod` via helm requires the creation of secrets for Registry1 image pulls. Do this by replacing `REGISTRY1-AUTH-KEY` with your own personal authentication token and applying these two secrets:
-
-```yaml
-apiVersion: v1
-data:
-  .dockerconfigjson: REGISTRY1-AUTH-KEY
-kind: Secret
-metadata:
-  annotations:
-    kubectl.kubernetes.io/last-applied-configuration: |
-      {"apiVersion":"v1","data":{".dockerconfigjson":"REGISTRY1-AUTH-KEY"},"kind":"Secret","metadata":{"annotations":{},"creationTimestamp":null,"name":"registry1","namespace":"istio-system"},"type":"kubernetes.io/dockerconfigjson"}
-  name: registry1
-  namespace: istio-system
-type: kubernetes.io/dockerconfigjson
----
-apiVersion: v1
-data:
-  .dockerconfigjson: REGISTRY1-AUTH-KEY
-kind: Secret
-metadata:
-  annotations:
-    kubectl.kubernetes.io/last-applied-configuration: |
-      {"apiVersion":"v1","data":{".dockerconfigjson":"REGISTRY1-AUTH-KEY"},"kind":"Secret","metadata":{"annotations":{},"creationTimestamp":null,"name":"private-registry","namespace":"istio-system"},"type":"kubernetes.io/dockerconfigjson"}
-  name: private-registry
-  namespace: istio-system
-type: kubernetes.io/dockerconfigjson
-```
-
 
 ## Values
 
@@ -106,13 +74,13 @@ type: kubernetes.io/dockerconfigjson
 | defaults.pilot.serviceAccountAnnotations | object | `{}` |  |
 | defaults.pilot.topologySpreadConstraints | list | `[]` |  |
 | defaults.pilot.jwksResolverExtraRootCA | string | `""` |  |
-| defaults.pilot.configSource.subscribedResources | list | `[]` |  |
 | defaults.pilot.keepaliveMaxServerConnectionAge | string | `"30m"` |  |
 | defaults.pilot.deploymentLabels | object | `{}` |  |
 | defaults.pilot.configMap | bool | `true` |  |
 | defaults.pilot.podLabels | object | `{}` |  |
 | defaults.pilot.ipFamilyPolicy | string | `""` |  |
 | defaults.pilot.ipFamilies | list | `[]` |  |
+| defaults.pilot.trustedZtunnelNamespace | string | `""` |  |
 | defaults.sidecarInjectorWebhook.neverInjectSelector | list | `[]` |  |
 | defaults.sidecarInjectorWebhook.alwaysInjectSelector | list | `[]` |  |
 | defaults.sidecarInjectorWebhook.injectedAnnotations | object | `{}` |  |
@@ -163,6 +131,7 @@ type: kubernetes.io/dockerconfigjson
 | defaults.global.proxy.includeOutboundPorts | string | `""` |  |
 | defaults.global.proxy.excludeOutboundPorts | string | `""` |  |
 | defaults.global.proxy.logLevel | string | `"warning"` |  |
+| defaults.global.proxy.outlierLogPath | string | `""` |  |
 | defaults.global.proxy.privileged | bool | `false` |  |
 | defaults.global.proxy.readinessFailureThreshold | int | `4` |  |
 | defaults.global.proxy.readinessInitialDelaySeconds | int | `0` |  |
@@ -196,6 +165,7 @@ type: kubernetes.io/dockerconfigjson
 | defaults.istio_cni.chained | bool | `true` |  |
 | defaults.istio_cni.provider | string | `"default"` |  |
 | defaults.gateways.securityContext | object | `{}` |  |
+| defaults.gateways.seccompProfile | object | `{}` |  |
 
 ## Contributing
 
