@@ -1,7 +1,7 @@
 apiVersion: v2
 name: istiod
-version: 1.23.2-bb.0
-appVersion: 1.23.2
+version: 1.25.1-bb.0
+appVersion: 1.25.1
 description: Helm chart for istio control plane
 keywords:
   - istio
@@ -9,6 +9,13 @@ keywords:
   - istio-discovery
 sources:
   - https://github.com/istio/istio
+dependencies:
+  - name: istiod
+    repository: https://istio-release.storage.googleapis.com/charts
+    version: 1.25.1
+    alias: upstream
 annotations:
+  bigbang.dev/passthrough: "true"
+  bigbang.dev/passthrough-toplevel-key: upstream
   bigbang.dev/upstreamReleaseNotesMarkdown: |
-    - [Find upstream chart's release notes and CHANGELOG here](https://istio.io/latest/news/releases/1.23.x/announcing-1.23.2/)
+    - [Find upstream chart's release notes and CHANGELOG here](https://istio.io/latest/news/releases)

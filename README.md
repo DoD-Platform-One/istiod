@@ -1,17 +1,17 @@
 <!-- Warning: Do not manually edit this file. See notes on gluon + helm-docs at the end of this file for more information. -->
 # istiod
 
-![Version: 1.23.2-bb.0](https://img.shields.io/badge/Version-1.23.2--bb.0-informational?style=flat-square) ![AppVersion: 1.23.2](https://img.shields.io/badge/AppVersion-1.23.2-informational?style=flat-square)
+![Version: 1.25.1-bb.0](https://img.shields.io/badge/Version-1.25.1--bb.0-informational?style=flat-square) ![AppVersion: 1.25.1](https://img.shields.io/badge/AppVersion-1.25.1-informational?style=flat-square) ![Maintenance Track: unknown](https://img.shields.io/badge/Maintenance_Track-unknown-red?style=flat-square)
 
 Helm chart for istio control plane
 
 ## Upstream References
 
-* <https://github.com/istio/istio>
+- <https://github.com/istio/istio>
 
 ## Upstream Release Notes
 
-- [Find upstream chart's release notes and CHANGELOG here](https://istio.io/latest/news/releases/1.23.x/announcing-1.23.2/)
+- [Find upstream chart's release notes and CHANGELOG here](https://istio.io/latest/news/releases)
 
 ## Learn More
 
@@ -41,131 +41,141 @@ helm install istiod chart/
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| defaults.pilot.autoscaleEnabled | bool | `true` |  |
-| defaults.pilot.autoscaleMin | int | `1` |  |
-| defaults.pilot.autoscaleMax | int | `5` |  |
-| defaults.pilot.autoscaleBehavior | object | `{}` |  |
-| defaults.pilot.replicaCount | int | `1` |  |
-| defaults.pilot.rollingMaxSurge | string | `"100%"` |  |
-| defaults.pilot.rollingMaxUnavailable | string | `"25%"` |  |
-| defaults.pilot.hub | string | `""` |  |
-| defaults.pilot.tag | string | `""` |  |
-| defaults.pilot.variant | string | `""` |  |
-| defaults.pilot.image | string | `"pilot"` |  |
-| defaults.pilot.traceSampling | float | `1` |  |
-| defaults.pilot.resources.requests.cpu | string | `"500m"` |  |
-| defaults.pilot.resources.requests.memory | string | `"2048Mi"` |  |
-| defaults.pilot.seccompProfile | object | `{}` |  |
-| defaults.pilot.cni.enabled | bool | `false` |  |
-| defaults.pilot.cni.provider | string | `"default"` |  |
-| defaults.pilot.extraContainerArgs | list | `[]` |  |
-| defaults.pilot.env | object | `{}` |  |
-| defaults.pilot.taint.enabled | bool | `false` |  |
-| defaults.pilot.taint.namespace | string | `""` |  |
-| defaults.pilot.affinity | object | `{}` |  |
-| defaults.pilot.tolerations | list | `[]` |  |
-| defaults.pilot.cpu.targetAverageUtilization | int | `80` |  |
-| defaults.pilot.memory | object | `{}` |  |
-| defaults.pilot.volumeMounts | list | `[]` |  |
-| defaults.pilot.volumes | list | `[]` |  |
-| defaults.pilot.nodeSelector | object | `{}` |  |
-| defaults.pilot.podAnnotations | object | `{}` |  |
-| defaults.pilot.serviceAnnotations | object | `{}` |  |
-| defaults.pilot.serviceAccountAnnotations | object | `{}` |  |
-| defaults.pilot.topologySpreadConstraints | list | `[]` |  |
-| defaults.pilot.jwksResolverExtraRootCA | string | `""` |  |
-| defaults.pilot.keepaliveMaxServerConnectionAge | string | `"30m"` |  |
-| defaults.pilot.deploymentLabels | object | `{}` |  |
-| defaults.pilot.configMap | bool | `true` |  |
-| defaults.pilot.podLabels | object | `{}` |  |
-| defaults.pilot.ipFamilyPolicy | string | `""` |  |
-| defaults.pilot.ipFamilies | list | `[]` |  |
-| defaults.pilot.trustedZtunnelNamespace | string | `""` |  |
-| defaults.sidecarInjectorWebhook.neverInjectSelector | list | `[]` |  |
-| defaults.sidecarInjectorWebhook.alwaysInjectSelector | list | `[]` |  |
-| defaults.sidecarInjectorWebhook.injectedAnnotations | object | `{}` |  |
-| defaults.sidecarInjectorWebhook.enableNamespacesByDefault | bool | `false` |  |
-| defaults.sidecarInjectorWebhook.reinvocationPolicy | string | `"Never"` |  |
-| defaults.sidecarInjectorWebhook.rewriteAppHTTPProbe | bool | `true` |  |
-| defaults.sidecarInjectorWebhook.templates | object | `{}` |  |
-| defaults.sidecarInjectorWebhook.defaultTemplates | list | `[]` |  |
-| defaults.istiodRemote.injectionURL | string | `""` |  |
-| defaults.istiodRemote.injectionPath | string | `"/inject"` |  |
-| defaults.istiodRemote.injectionCABundle | string | `""` |  |
-| defaults.telemetry.enabled | bool | `true` |  |
-| defaults.telemetry.v2.enabled | bool | `true` |  |
-| defaults.telemetry.v2.prometheus.enabled | bool | `true` |  |
-| defaults.telemetry.v2.stackdriver.enabled | bool | `false` |  |
-| defaults.revision | string | `""` |  |
-| defaults.revisionTags | list | `[]` |  |
-| defaults.ownerName | string | `""` |  |
-| defaults.meshConfig.enablePrometheusMerge | bool | `true` |  |
-| defaults.experimental.stableValidationPolicy | bool | `false` |  |
-| defaults.global.istioNamespace | string | `"istio-system"` |  |
-| defaults.global.certSigners | list | `[]` |  |
-| defaults.global.defaultPodDisruptionBudget.enabled | bool | `true` |  |
-| defaults.global.defaultResources.requests.cpu | string | `"10m"` |  |
-| defaults.global.hub | string | `"registry1.dso.mil/ironbank/opensource/istio"` |  |
-| defaults.global.tag | string | `"1.22.2"` |  |
-| defaults.global.variant | string | `""` |  |
-| defaults.global.enterprise | bool | `false` | Tetrate Istio Distribution - Tetrate provides FIPs verified Istio and Envoy software and support, validated through the FIPs Boring Crypto module. Find out more from Tetrate - https://www.tetrate.io/tetrate-istio-subscription |
-| defaults.global.tidHub | string | `"registry1.dso.mil/ironbank/tetrate/istio"` |  |
-| defaults.global.tidTag | string | `"1.22.2-tetratefips-v0"` |  |
-| defaults.global.imagePullPolicy | string | `""` |  |
-| defaults.global.imagePullSecrets[0] | string | `"private-registry"` |  |
-| defaults.global.istiod.enableAnalysis | bool | `false` |  |
-| defaults.global.logAsJson | bool | `false` |  |
-| defaults.global.logging.level | string | `"default:info"` |  |
-| defaults.global.omitSidecarInjectorConfigMap | bool | `false` |  |
-| defaults.global.operatorManageWebhooks | bool | `false` |  |
-| defaults.global.priorityClassName | string | `""` |  |
-| defaults.global.proxy.image | string | `"proxyv2"` |  |
-| defaults.global.proxy.autoInject | string | `"enabled"` |  |
-| defaults.global.proxy.clusterDomain | string | `"cluster.local"` |  |
-| defaults.global.proxy.componentLogLevel | string | `"misc:error"` |  |
-| defaults.global.proxy.enableCoreDump | bool | `false` |  |
-| defaults.global.proxy.excludeInboundPorts | string | `""` |  |
-| defaults.global.proxy.includeInboundPorts | string | `"*"` |  |
-| defaults.global.proxy.includeIPRanges | string | `"*"` |  |
-| defaults.global.proxy.excludeIPRanges | string | `""` |  |
-| defaults.global.proxy.includeOutboundPorts | string | `""` |  |
-| defaults.global.proxy.excludeOutboundPorts | string | `""` |  |
-| defaults.global.proxy.logLevel | string | `"warning"` |  |
-| defaults.global.proxy.outlierLogPath | string | `""` |  |
-| defaults.global.proxy.privileged | bool | `false` |  |
-| defaults.global.proxy.readinessFailureThreshold | int | `4` |  |
-| defaults.global.proxy.readinessInitialDelaySeconds | int | `0` |  |
-| defaults.global.proxy.readinessPeriodSeconds | int | `15` |  |
-| defaults.global.proxy.startupProbe.enabled | bool | `true` |  |
-| defaults.global.proxy.startupProbe.failureThreshold | int | `600` |  |
-| defaults.global.proxy.resources.requests.cpu | string | `"100m"` |  |
-| defaults.global.proxy.resources.requests.memory | string | `"128Mi"` |  |
-| defaults.global.proxy.resources.limits.cpu | string | `"2000m"` |  |
-| defaults.global.proxy.resources.limits.memory | string | `"1024Mi"` |  |
-| defaults.global.proxy.statusPort | int | `15020` |  |
-| defaults.global.proxy.tracer | string | `"none"` |  |
-| defaults.global.proxy_init.image | string | `"proxyv2"` |  |
-| defaults.global.remotePilotAddress | string | `""` |  |
-| defaults.global.caAddress | string | `""` |  |
-| defaults.global.externalIstiod | bool | `false` |  |
-| defaults.global.configCluster | bool | `false` |  |
-| defaults.global.configValidation | bool | `true` |  |
-| defaults.global.meshID | string | `""` |  |
-| defaults.global.meshNetworks | object | `{}` |  |
-| defaults.global.mountMtlsCerts | bool | `false` |  |
-| defaults.global.multiCluster.enabled | bool | `false` |  |
-| defaults.global.multiCluster.clusterName | string | `""` |  |
-| defaults.global.network | string | `""` |  |
-| defaults.global.pilotCertProvider | string | `"istiod"` |  |
-| defaults.global.sds.token.aud | string | `"istio-ca"` |  |
-| defaults.global.sts.servicePort | int | `0` |  |
-| defaults.global.caName | string | `""` |  |
-| defaults.global.autoscalingv2API | bool | `true` |  |
-| defaults.base.enableIstioConfigCRDs | bool | `true` |  |
-| defaults.istio_cni.chained | bool | `true` |  |
-| defaults.istio_cni.provider | string | `"default"` |  |
-| defaults.gateways.securityContext | object | `{}` |  |
-| defaults.gateways.seccompProfile | object | `{}` |  |
+| networkPolicies.enabled | bool | `false` |  |
+| networkPolicies.additionalPolicies | list | `[]` |  |
+| monitoring.enabled | bool | `true` |  |
+| mtls.mode | string | `"STRICT"` |  |
+| defaultSecurityHeaders.enabled | bool | `true` |  |
+| upstream.autoscaleEnabled | bool | `true` |  |
+| upstream.autoscaleMin | int | `1` |  |
+| upstream.autoscaleMax | int | `5` |  |
+| upstream.autoscaleBehavior | object | `{}` |  |
+| upstream.replicaCount | int | `1` |  |
+| upstream.rollingMaxSurge | string | `"100%"` |  |
+| upstream.rollingMaxUnavailable | string | `"25%"` |  |
+| upstream.hub | string | `""` |  |
+| upstream.tag | string | `""` |  |
+| upstream.variant | string | `""` |  |
+| upstream.image | string | `"pilot"` |  |
+| upstream.traceSampling | float | `1` |  |
+| upstream.resources.requests.cpu | string | `"500m"` |  |
+| upstream.resources.requests.memory | string | `"2048Mi"` |  |
+| upstream.seccompProfile | object | `{}` |  |
+| upstream.cni.enabled | bool | `false` |  |
+| upstream.cni.provider | string | `"default"` |  |
+| upstream.extraContainerArgs | list | `[]` |  |
+| upstream.env.ENABLE_NATIVE_SIDECARS | string | `"true"` |  |
+| upstream.taint.enabled | bool | `false` |  |
+| upstream.taint.namespace | string | `""` |  |
+| upstream.affinity | object | `{}` |  |
+| upstream.tolerations | list | `[]` |  |
+| upstream.cpu.targetAverageUtilization | int | `80` |  |
+| upstream.memory | object | `{}` |  |
+| upstream.volumeMounts | list | `[]` |  |
+| upstream.volumes | list | `[]` |  |
+| upstream.initContainers | list | `[]` |  |
+| upstream.nodeSelector | object | `{}` |  |
+| upstream.podAnnotations | object | `{}` |  |
+| upstream.serviceAnnotations | object | `{}` |  |
+| upstream.serviceAccountAnnotations | object | `{}` |  |
+| upstream.sidecarInjectorWebhookAnnotations | object | `{}` |  |
+| upstream.topologySpreadConstraints | list | `[]` |  |
+| upstream.jwksResolverExtraRootCA | string | `""` |  |
+| upstream.keepaliveMaxServerConnectionAge | string | `"30m"` |  |
+| upstream.deploymentLabels | object | `{}` |  |
+| upstream.configMap | bool | `true` |  |
+| upstream.podLabels | object | `{}` |  |
+| upstream.ipFamilyPolicy | string | `""` |  |
+| upstream.ipFamilies | list | `[]` |  |
+| upstream.trustedZtunnelNamespace | string | `""` |  |
+| upstream.sidecarInjectorWebhook.neverInjectSelector | list | `[]` |  |
+| upstream.sidecarInjectorWebhook.alwaysInjectSelector | list | `[]` |  |
+| upstream.sidecarInjectorWebhook.injectedAnnotations | object | `{}` |  |
+| upstream.sidecarInjectorWebhook.enableNamespacesByDefault | bool | `false` |  |
+| upstream.sidecarInjectorWebhook.reinvocationPolicy | string | `"Never"` |  |
+| upstream.sidecarInjectorWebhook.rewriteAppHTTPProbe | bool | `true` |  |
+| upstream.sidecarInjectorWebhook.templates | object | `{}` |  |
+| upstream.sidecarInjectorWebhook.defaultTemplates | list | `[]` |  |
+| upstream.istiodRemote.enabled | bool | `false` |  |
+| upstream.istiodRemote.injectionURL | string | `""` |  |
+| upstream.istiodRemote.injectionPath | string | `"/inject"` |  |
+| upstream.istiodRemote.injectionCABundle | string | `""` |  |
+| upstream.telemetry.enabled | bool | `true` |  |
+| upstream.telemetry.v2.enabled | bool | `true` |  |
+| upstream.telemetry.v2.prometheus.enabled | bool | `true` |  |
+| upstream.telemetry.v2.stackdriver.enabled | bool | `false` |  |
+| upstream.revision | string | `""` |  |
+| upstream.revisionTags | list | `[]` |  |
+| upstream.ownerName | string | `""` |  |
+| upstream.meshConfig.enablePrometheusMerge | bool | `true` |  |
+| upstream.meshConfig.accessLogFile | string | `"/dev/stdout"` |  |
+| upstream.meshConfig.meshMTLS.minProtocolVersion | string | `"TLSV1_2"` |  |
+| upstream.experimental.stableValidationPolicy | bool | `false` |  |
+| upstream.global.istioNamespace | string | `"istio-system"` |  |
+| upstream.global.certSigners | list | `[]` |  |
+| upstream.global.defaultPodDisruptionBudget.enabled | bool | `true` |  |
+| upstream.global.defaultResources.requests.cpu | string | `"10m"` |  |
+| upstream.global.hub | string | `"registry1.dso.mil/ironbank/opensource/istio"` |  |
+| upstream.global.tag | string | `"1.25.1"` |  |
+| upstream.global.variant | string | `""` |  |
+| upstream.global.imagePullPolicy | string | `""` |  |
+| upstream.global.imagePullSecrets | list | `[]` |  |
+| upstream.global.istiod.enableAnalysis | bool | `false` |  |
+| upstream.global.logAsJson | bool | `false` |  |
+| upstream.global.logging.level | string | `"default:info"` |  |
+| upstream.global.omitSidecarInjectorConfigMap | bool | `false` |  |
+| upstream.global.operatorManageWebhooks | bool | `false` |  |
+| upstream.global.priorityClassName | string | `""` |  |
+| upstream.global.proxy.image | string | `"proxyv2"` |  |
+| upstream.global.proxy.autoInject | string | `"enabled"` |  |
+| upstream.global.proxy.clusterDomain | string | `"cluster.local"` |  |
+| upstream.global.proxy.componentLogLevel | string | `"misc:error"` |  |
+| upstream.global.proxy.excludeInboundPorts | string | `""` |  |
+| upstream.global.proxy.includeInboundPorts | string | `"*"` |  |
+| upstream.global.proxy.includeIPRanges | string | `"*"` |  |
+| upstream.global.proxy.excludeIPRanges | string | `""` |  |
+| upstream.global.proxy.includeOutboundPorts | string | `""` |  |
+| upstream.global.proxy.excludeOutboundPorts | string | `""` |  |
+| upstream.global.proxy.logLevel | string | `"warning"` |  |
+| upstream.global.proxy.outlierLogPath | string | `""` |  |
+| upstream.global.proxy.privileged | bool | `false` |  |
+| upstream.global.proxy.readinessFailureThreshold | int | `4` |  |
+| upstream.global.proxy.readinessInitialDelaySeconds | int | `0` |  |
+| upstream.global.proxy.readinessPeriodSeconds | int | `15` |  |
+| upstream.global.proxy.startupProbe.enabled | bool | `true` |  |
+| upstream.global.proxy.startupProbe.failureThreshold | int | `600` |  |
+| upstream.global.proxy.resources.requests.cpu | string | `"100m"` |  |
+| upstream.global.proxy.resources.requests.memory | string | `"128Mi"` |  |
+| upstream.global.proxy.resources.limits.memory | string | `"512Mi"` |  |
+| upstream.global.proxy.statusPort | int | `15020` |  |
+| upstream.global.proxy.tracer | string | `"none"` |  |
+| upstream.global.proxy_init.image | string | `"proxyv2"` |  |
+| upstream.global.proxy_init.forceApplyIptables | bool | `false` |  |
+| upstream.global.remotePilotAddress | string | `""` |  |
+| upstream.global.caAddress | string | `""` |  |
+| upstream.global.externalIstiod | bool | `false` |  |
+| upstream.global.configCluster | bool | `false` |  |
+| upstream.global.configValidation | bool | `true` |  |
+| upstream.global.meshID | string | `""` |  |
+| upstream.global.meshNetworks | object | `{}` |  |
+| upstream.global.mountMtlsCerts | bool | `false` |  |
+| upstream.global.multiCluster.enabled | bool | `false` |  |
+| upstream.global.multiCluster.clusterName | string | `""` |  |
+| upstream.global.network | string | `""` |  |
+| upstream.global.pilotCertProvider | string | `"istiod"` |  |
+| upstream.global.sds.token.aud | string | `"istio-ca"` |  |
+| upstream.global.sts.servicePort | int | `0` |  |
+| upstream.global.caName | string | `""` |  |
+| upstream.global.waypoint.resources.requests.cpu | string | `"100m"` |  |
+| upstream.global.waypoint.resources.requests.memory | string | `"128Mi"` |  |
+| upstream.global.waypoint.resources.limits.memory | string | `"256Mi"` |  |
+| upstream.global.waypoint.affinity | object | `{}` |  |
+| upstream.global.waypoint.topologySpreadConstraints | list | `[]` |  |
+| upstream.global.waypoint.nodeSelector | object | `{}` |  |
+| upstream.global.waypoint.tolerations | list | `[]` |  |
+| upstream.base.enableIstioConfigCRDs | bool | `true` |  |
+| upstream.gateways.securityContext | object | `{}` |  |
+| upstream.gateways.seccompProfile | object | `{}` |  |
 
 ## Contributing
 
