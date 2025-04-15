@@ -4,6 +4,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.25.1-bb.0] - 2025-04-14
+
+### Changed
+
+- Migrated to passthrough chart pattern
+
 ## [1.22.2-bb.3] - 2024-09-30
 
 ### Added
@@ -19,7 +25,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - Added global values for registry, tag, and imagePullSecrets.
 - Sets defaults.global.hub to `registry1.dso.mil/ironbank/opensource/istio`.
-- Sets defaults.global.tag set to  `<chart version>`. 
+- Sets defaults.global.tag set to `<chart version>`.
 - Sets defaults.global.imagePullSecrets to `registry-private`.
 
 ## [1.22.2-bb.1] - 2024-07-24
