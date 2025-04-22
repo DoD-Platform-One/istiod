@@ -1,0 +1,45 @@
+#########################
+# Disable Core Packages #
+#########################
+monitoring:
+  enabled: false
+grafana:
+  enabled: false
+neuvector:
+  enabled: false
+loki:
+  enabled: false
+promtail:
+  enabled: false
+tempo:
+  enabled: false
+kyvernoReporter:
+  enabled: false
+kiali:
+  enabled: false
+addons:
+  minioOperator:
+    enabled: false
+########################
+# Required for package #
+########################
+istio:
+  enabled: false
+istioOperator:
+  enabled: false
+istioCRDs:
+  enabled: true
+istiod:
+  enabled: true
+istioGateway:
+  enabled: true
+kyvernoPolicies:
+  values:
+    bbtests:
+      enabled: false
+kyverno:
+  values:
+    bbtests:
+      enabled: false
+
+

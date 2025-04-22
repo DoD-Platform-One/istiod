@@ -2,6 +2,7 @@
 certs/
 
 .DS_Store
+._*
 
 .terraform
 *.pem
