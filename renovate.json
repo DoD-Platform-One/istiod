@@ -1,1 +1,75 @@
-{}
+{
+  "extends": ["local>platform-one/big-bang/pipeline-templates/renovate-runner"],
+  "enabledManagers": ["helmv3", "regex"],
+  "labels": [
+    "istiod",
+    "Big Bang Core",
+    "Package Sustainment",
+    "kind::maintenance",
+    "renovate"
+  ],
+  "postUpdateOptions": ["helmUpdateSubChartArchives"],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "description": "Update chart version to match upstream; append -bb.0",
+      "fileMatch": ["^chart/Chart\\.yaml$"],
+      "matchStrings": ["version:\\s+(?<currentValue>.+)-bb\\.\\d+"],
+      "autoReplaceStringTemplate": "version: {{newValue}}-bb.0",
+      "depNameTemplate": "istiod",
+      "datasourceTemplate": "helm",
+      "registryUrlTemplate": "https://istio-release.storage.googleapis.com/charts"
+    },
+    {
+      "customType": "regex",
+      "description": "Update chart appVersion to match upstream",
+      "fileMatch": ["^chart/Chart\\.yaml$"],
+      "matchStrings": ["appVersion:\\s+(?<currentValue>.+)"],
+      "autoReplaceStringTemplate": "appVersion: {{newValue}}",
+      "depNameTemplate": "istiod",
+      "datasourceTemplate": "helm",
+      "registryUrlTemplate": "https://istio-release.storage.googleapis.com/charts"
+    },
+    {
+      "customType": "regex",
+      "description": "Update big bang application versions",
+      "fileMatch": ["^chart/Chart.yaml$"],
+      "matchStrings": ["- Istio:\\s+(?<currentValue>.+)"],
+      "autoReplaceStringTemplate": "- Istio: {{newValue}}",
+      "depNameTemplate": "istiod",
+      "datasourceTemplate": "helm",
+      "registryUrlTemplate": "https://istio-release.storage.googleapis.com/charts"
+    },
+    {
+      "customType": "regex",
+      "description": "Update pilot image to match upstream",
+      "fileMatch": ["^chart/Chart.yaml$"],
+      "matchStrings": [
+        "image: registry1.dso.mil\\/ironbank\\/opensource\\/istio\\/pilot:(?<currentValue>.+)"
+      ],
+      "autoReplaceStringTemplate": "image: registry1.dso.mil/ironbank/opensource/istio/pilot:{{newValue}}",
+      "depNameTemplate": "istiod",
+      "datasourceTemplate": "helm",
+      "registryUrlTemplate": "https://istio-release.storage.googleapis.com/charts"
+    },
+    {
+      "customType": "regex",
+      "description": "Update proxyv2 image to match upstream",
+      "fileMatch": ["^chart/Chart.yaml$"],
+      "matchStrings": [
+        "image: registry1.dso.mil\\/ironbank\\/opensource\\/istio\\/proxyv2:(?<currentValue>.+)"
+      ],
+      "autoReplaceStringTemplate": "image: registry1.dso.mil/ironbank/opensource/istio/proxyv2:{{newValue}}",
+      "depNameTemplate": "istiod",
+      "datasourceTemplate": "helm",
+      "registryUrlTemplate": "https://istio-release.storage.googleapis.com/charts"
+    }
+  ],
+  "postUpgradeTasks": {
+    "commands": [
+      "regenerate-helm-docs",
+      "bump-changelog '- {{{replace 'registry1.dso.mil/' '' depName}}} updated from {{{currentVersion}}} to {{{newVersion}}}'"
+    ],
+    "fileFilters": ["chart/Chart.yaml", "README.md", "CHANGELOG.md"]
+  }
+}
