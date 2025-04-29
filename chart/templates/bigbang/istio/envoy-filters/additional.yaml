@@ -1,0 +1,20 @@
+{{- range $ef := .Values.additionalEnvoyFilters }}
+apiVersion: networking.istio.io/v1alpha3
+kind: EnvoyFilter
+metadata:
+  name: {{ $ef.name }}
+  {{- if $ef.labels }}
+  labels:
+    {{- range $key, $value := $ef.labels }}
+    {{ $key }}: {{ $value | quote }}
+    {{- end }}
+  {{- end }}
+  {{- if $ef.annotations }}
+  annotations:
+    {{- range $key, $value := $ef.annotations }}
+    {{ $key }}: {{ $value | quote }}
+    {{- end }}
+  {{- end }}
+spec:
+  {{ tpl ($ef.spec | toYaml) . | nindent 2 }}
+{{- end }}

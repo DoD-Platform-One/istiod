@@ -1,7 +1,7 @@
 <!-- Warning: Do not manually edit this file. See notes on gluon + helm-docs at the end of this file for more information. -->
 # istiod
 
-![Version: 1.25.2-bb.0](https://img.shields.io/badge/Version-1.25.2--bb.0-informational?style=flat-square) ![AppVersion: 1.25.2](https://img.shields.io/badge/AppVersion-1.25.2-informational?style=flat-square) ![Maintenance Track: bb_integrated](https://img.shields.io/badge/Maintenance_Track-bb_integrated-green?style=flat-square)
+![Version: 1.25.2-bb.1](https://img.shields.io/badge/Version-1.25.2--bb.1-informational?style=flat-square) ![AppVersion: 1.25.2](https://img.shields.io/badge/AppVersion-1.25.2-informational?style=flat-square) ![Maintenance Track: bb_integrated](https://img.shields.io/badge/Maintenance_Track-bb_integrated-green?style=flat-square)
 
 Helm chart for istio control plane
 
@@ -43,6 +43,7 @@ helm install istiod chart/
 |-----|------|---------|-------------|
 | networkPolicies.enabled | bool | `false` |  |
 | networkPolicies.additionalPolicies | list | `[]` |  |
+| additionalEnvoyFilters | list | `[]` |  |
 | monitoring.enabled | bool | `true` |  |
 | mtls.mode | string | `"STRICT"` |  |
 | defaultSecurityHeaders.enabled | bool | `true` |  |

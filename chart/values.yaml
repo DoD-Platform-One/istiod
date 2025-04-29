@@ -2,6 +2,37 @@ networkPolicies:
   enabled: false
   additionalPolicies: []
 
+additionalEnvoyFilters: []
+# additionalEnvoyFilters:
+#   - name: my-envoy-filter # required
+#     labels: # optional
+#       app: my-app
+#     annotations: # optional
+#       my-annotation: my-value
+#     spec: # required
+#       configPatches:
+#         - applyTo: NETWORK_FILTER
+#           match:
+#             context: SIDECAR_INBOUND
+#             listener:
+#               portNumber: 8080
+#               filterChain:
+#                 filterType: NETWORK
+#                 filterName: "envoy.filters.network.http_connection_manager"
+#           patch:
+#             operation: INSERT_BEFORE
+#             value:
+#               name: "envoy.filters.http.lua"
+#               typed_config:
+#                 "@type": "type.googleapis.com/envoy.extensions.filters.http.lua.v3.Lua"
+#                 inlineCode: |
+#                   function envoy_on_request(request_handle)
+#                     request_handle:headers():add("x-my-header", "my-value")
+#                   end
+#                   function envoy_on_response(response_handle)
+#                     response_handle:headers():add("x-my-header", "my-value")
+#                   end
+
 monitoring:
   enabled: true
 
