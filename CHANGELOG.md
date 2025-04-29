@@ -4,6 +4,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.25.2-bb.1] - 2025-04-29
+
+### Added
+
+- Added option for passing in `EnvoyFilter` resources via `additionalEnvoyFilters`
+
+### Changed
+
+- Renamed `network-policies/additional-network-policies.yaml` to `network-policies/additional.yaml` for consistency
+
 ## [1.25.2-bb.0] - 2025-04-17
 
 ### Changed
