@@ -4,6 +4,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.25.2-bb.3] - 2025-05-01
+
+### Changed
+
+- Stopped overriding upstream CPU limits for proxies and waypoints
+
 ## [1.25.2-bb.2] - 2025-04-30
 
 ### Added
