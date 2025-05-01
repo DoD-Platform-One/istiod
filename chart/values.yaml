@@ -69,12 +69,3 @@ upstream:
   global:
     hub: registry1.dso.mil/ironbank/opensource/istio
     tag: 1.25.2
-    proxy:
-      resources:
-        limits:
-          cpu: null
-
-    waypoint:
-      resources:
-        limits:
-          cpu: null
