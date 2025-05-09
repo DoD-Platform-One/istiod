@@ -86,6 +86,20 @@
       "depNameTemplate": "istiod",
       "datasourceTemplate": "helm",
       "registryUrlTemplate": "https://istio-release.storage.googleapis.com/charts"
+    },
+    {
+      "customType": "regex",
+      "description": "Update tag in values to match upstream",
+      "fileMatch": [
+        "^chart/values.yaml$"
+      ],
+      "matchStrings": [
+        "tag:\\s+(?<currentValue>.+)"
+      ],
+      "autoReplaceStringTemplate": "tag: {{newValue}}",
+      "depNameTemplate": "istiod",
+      "datasourceTemplate": "helm",
+      "registryUrlTemplate": "https://istio-release.storage.googleapis.com/charts"
     }
   ],
   "postUpgradeTasks": {
