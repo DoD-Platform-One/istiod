@@ -1,7 +1,7 @@
 <!-- Warning: Do not manually edit this file. See notes on gluon + helm-docs at the end of this file for more information. -->
 # istiod
 
-![Version: 1.25.2-bb.3](https://img.shields.io/badge/Version-1.25.2--bb.3-informational?style=flat-square) ![AppVersion: 1.25.2](https://img.shields.io/badge/AppVersion-1.25.2-informational?style=flat-square) ![Maintenance Track: bb_integrated](https://img.shields.io/badge/Maintenance_Track-bb_integrated-green?style=flat-square)
+![Version: 1.25.2-bb.4](https://img.shields.io/badge/Version-1.25.2--bb.4-informational?style=flat-square) ![AppVersion: 1.25.2](https://img.shields.io/badge/AppVersion-1.25.2-informational?style=flat-square) ![Maintenance Track: bb_integrated](https://img.shields.io/badge/Maintenance_Track-bb_integrated-green?style=flat-square)
 
 Helm chart for istio control plane
 
@@ -46,6 +46,7 @@ helm install istiod chart/
 | networkPolicies.additionalPolicies | list | `[]` | A list of additional network policies to create in the release namespace |
 | additionalEnvoyFilters | list | `[]` | A list of additional EnvoyFilters to create in the release namespace |
 | monitoring.enabled | bool | `true` | Enable or disable the bundled monitoring components and network policies |
+| authservice.enabled | bool | `false` |  |
 | mtls.mode | string | `"STRICT"` | Set the mTLS mode for the istio-system namespace |
 | defaultSecurityHeaders.enabled | bool | `true` | Enable or disable the default security headers |
 | upstream | object | Upstream chart values | Values to pass to [the upstream istiod chart](https://github.com/istio/istio/blob/master/manifests/charts/istio-control/istio-discovery/values.yaml) |

@@ -47,6 +47,9 @@ monitoring:
   # network policies
   enabled: true
 
+authservice:
+  enabled: false
+
 mtls:
   # -- Set the mTLS mode for the istio-system namespace
   mode: STRICT
