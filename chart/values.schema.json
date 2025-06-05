@@ -86,6 +86,26 @@
         }
       }
     },
+    "hardened": {
+      "type": "object",
+      "description": "Enables Istio hardened configuration",
+      "additionalProperties": false,
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable or disable the hardened configuration"
+        },
+        "customAuthorizationPolicies": {
+          "type": "array",
+          "description": "A list of custom authorization policies to create in the istio-system namespace",
+          "minItems": 0,
+          "items": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        }
+      }
+    },
     "upstream": {
       "type": "object",
       "description": "Values to pass to the upstream istiod chart (https://github.com/istio/istio/blob/master/manifests/charts/istio-control/istio-discovery/values.yaml)",
