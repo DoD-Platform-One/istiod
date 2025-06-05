@@ -58,6 +58,11 @@ defaultSecurityHeaders:
   # -- Enable or disable the default security headers
   enabled: true
 
+hardened:
+  # -- Enable or disable the hardened Istio configuration
+  enabled: false
+  customAuthorizationPolicies: []
+
 # -- Values to pass to [the upstream istiod chart](https://github.com/istio/istio/blob/master/manifests/charts/istio-control/istio-discovery/values.yaml)
 # @default -- Upstream chart values
 upstream:
