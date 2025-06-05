@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Big Bang Istiod Values Schema",
+  "description": "JSON Schema for Big Bang Istiod Helm chart values.yaml",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "networkPolicies": {
+      "type": "object",
+      "description": "Network policy configuration",
+      "additionalProperties": true,
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable or disable the bundled network policies"
+        },
+        "controlPlaneCIDRs": {
+          "type": "array",
+          "description": "Configure which CIDRs istiod will be allowed to connect to when accessing the kube-apiserver; if none are specified, the chart will look up the default kubernetes EndpointSlice and use the addresses found there",
+          "items": {
+            "type": "string"
+          }
+        },
+        "additionalPolicies": {
+          "type": "array",
+          "description": "A list of additional network policies to create in the release namespace",
+          "minItems": 0,
+          "items": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        }
+      }
+    },
+    "additionalEnvoyFilters": {
+      "type": "array",
+      "description": "A list of additional EnvoyFilters to create in the release namespace",
+      "minItems": 0,
+      "items": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    },
+    "monitoring": {
+      "type": "object",
+      "description": "Monitoring configuration",
+      "additionalProperties": true,
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable or disable the bundled monitoring components and network policies"
+        }
+      }
+    },
+    "authservice": {
+      "type": "object",
+      "description": "Authservice configuration",
+      "additionalProperties": true,
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable or disable authservice"
+        }
+      }
+    },
+    "mtls": {
+      "type": "object",
+      "description": "Mutual TLS configuration",
+      "additionalProperties": true,
+      "properties": {
+        "mode": {
+          "type": "string",
+          "enum": ["STRICT", "PERMISSIVE", "DISABLE", "UNSET"],
+          "description": "Set the mTLS mode for the istio-system namespace"
+        }
+      }
+    },
+    "defaultSecurityHeaders": {
+      "type": "object",
+      "description": "Default security headers configuration",
+      "additionalProperties": true,
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable or disable the default security headers"
+        }
+      }
+    },
+    "upstream": {
+      "type": "object",
+      "description": "Values to pass to the upstream istiod chart (https://github.com/istio/istio/blob/master/manifests/charts/istio-control/istio-discovery/values.yaml)",
+      "additionalProperties": true
+    }
+  }
+}
