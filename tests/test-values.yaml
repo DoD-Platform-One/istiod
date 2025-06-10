@@ -27,10 +27,6 @@ addons:
 ########################
 # Required for package #
 ########################
-istio:
-  enabled: false
-istioOperator:
-  enabled: false
 istioCRDs:
   enabled: true
 istiod:
