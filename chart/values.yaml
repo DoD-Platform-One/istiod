@@ -76,4 +76,4 @@ upstream:
 
   global:
     hub: registry1.dso.mil/ironbank/opensource/istio
-    tag: 1.26.1
+    tag: 1.26.2
