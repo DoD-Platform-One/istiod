@@ -8,7 +8,37 @@ networkPolicies:
   controlPlaneCIDRs: []
   # -- A list of additional network policies to create
   # in the release namespace
+  egress:
+    defaults:
+      allowInNamespace:
+        enabled: false
+      allowIstiod:
+        enabled: false
+    from:
+      istiod:
+        to:
+          definition:
+            kubeAPI: true
+  ingress:
+    defaults:
+      allowInNamespace:
+        enabled: false
+    to:
+      istiod:15014: # Required for applications that monitor istio
+        from:
+          k8s:
+            kiali/kiali: true
+            monitoring/prometheus: true
+      istiod:[443,15017]: # Access to webhook required by k8s control plane and envoy proxies
+        from:
+          cidr:
+            0.0.0.0/0: true
+      istiod:[15010,15012]: # Required by both sidecars and ambient mesh (15010 may also be required for apps not using mTLS or external to mesh)
+        from:
+          k8s:
+            "*": true
   additionalPolicies: []
+
 
 # -- A list of additional EnvoyFilters to create in the release namespace
 additionalEnvoyFilters: []

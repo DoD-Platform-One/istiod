@@ -1,0 +1,21 @@
+suite: Istio Grafana Dashboards Test
+templates:
+  - templates/bigbang/dashboards/istio-dashboards.yaml
+tests:
+  - it: should not create grafana dashboard config maps when monitoring is not enabled
+    set:
+      monitoring:
+        enabled: false
+    asserts:
+      - hasDocuments:
+          count: 0
+  - it: should create grafana dashboard config maps when monitoring is enabled in the correct namespace
+    set:
+      monitoring:
+        enabled: true
+    asserts:
+      - hasDocuments:
+          count: 2
+      - equal:
+          path: metadata.namespace
+          value: monitoring

@@ -1,0 +1,19 @@
+suite: Istio Default Security Headers Envoy Filter Test
+templates:
+  - templates/bigbang/istio/envoy-filters/default-security-headers.yaml
+tests:
+  - it: should not create default-security-headers when not enabled
+    set:
+      defaultSecurityHeaders.enabled: false
+    asserts:
+      - hasDocuments:
+          count: 0
+  - it: should create default-security-headers when enabled and apply to ingress gateways
+    set:
+      defaultSecurityHeaders.enabled: true
+    asserts:
+      - hasDocuments:
+          count: 1
+      - equal:
+          path: spec.workloadSelector.labels.istio
+          value: ingressgateway
