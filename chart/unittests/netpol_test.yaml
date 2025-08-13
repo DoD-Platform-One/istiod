@@ -1,0 +1,108 @@
+suite: Istio Newtork Policy Test
+templates:
+  - templates/bigbang/network-policies.yaml
+tests:
+  - it: should create network policy to allow inbound monitoring from kiali
+    set:
+      networkPolicies:
+        enabled: true
+    documentSelector:
+      path: metadata.name
+      value: allow-ingress-to-istiod-tcp-port-15014-from-ns-kiali-pod-kiali
+    asserts:
+      - equal:
+          path: spec
+          value: 
+            ingress:
+            - from:
+              - namespaceSelector:
+                  matchLabels:
+                    kubernetes.io/metadata.name: kiali
+                podSelector:
+                  matchLabels:
+                    app.kubernetes.io/name: kiali
+              ports:
+              - port: 15014
+                protocol: TCP
+            podSelector:
+              matchLabels:
+                app.kubernetes.io/name: istiod
+            policyTypes:
+            - Ingress
+  - it: should create network policy to allow inbound monitoring from prometheus
+    set:
+      networkPolicies:
+        enabled: true
+    documentSelector:
+      path: metadata.name
+      value: allow-ingress-to-istiod-tcp-port-15014-from-ns-monitoring-pod-prometheus
+    asserts:
+      - equal:
+          path: spec
+          value: 
+            ingress:
+            - from:
+              - namespaceSelector:
+                  matchLabels:
+                    kubernetes.io/metadata.name: monitoring
+                podSelector:
+                  matchLabels:
+                    app.kubernetes.io/name: prometheus
+              ports:
+              - port: 15014
+                protocol: TCP
+            podSelector:
+              matchLabels:
+                app.kubernetes.io/name: istiod
+            policyTypes:
+            - Ingress
+  - it: should create network policy to allow all inbound traffic from all pods in the cluster on ports 15010 and 15012
+    set:
+      networkPolicies:
+        enabled: true
+    documentSelector:
+      path: metadata.name
+      value: allow-ingress-to-istiod-tcp-ports-15010-15012-from-any-ns-any-pod
+    asserts:
+      - equal:
+          path: spec
+          value: 
+            ingress:
+            - from:
+              - namespaceSelector: {}
+                podSelector: {}
+              ports:
+              - port: 15010
+                protocol: TCP
+              - port: 15012
+                protocol: TCP
+            podSelector:
+              matchLabels:
+                app.kubernetes.io/name: istiod
+            policyTypes:
+            - Ingress
+  - it: should create network policy to allow all inbound traffic to webhook
+    set:
+      networkPolicies:
+        enabled: true
+    documentSelector:
+      path: metadata.name
+      value: allow-ingress-to-istiod-tcp-ports-443-15017-from-anywhere
+    asserts:
+      - equal:
+          path: spec
+          value: 
+            ingress:
+            - from:
+              - ipBlock:
+                  cidr: 0.0.0.0/0
+              ports:
+              - port: 443
+                protocol: TCP
+              - port: 15017
+                protocol: TCP
+            podSelector:
+              matchLabels:
+                app.kubernetes.io/name: istiod
+            policyTypes:
+            - Ingress

@@ -1,7 +1,7 @@
 <!-- Warning: Do not manually edit this file. See notes on gluon + helm-docs at the end of this file for more information. -->
 # istiod
 
-![Version: 1.26.3-bb.0](https://img.shields.io/badge/Version-1.26.3--bb.0-informational?style=flat-square) ![AppVersion: 1.26.3](https://img.shields.io/badge/AppVersion-1.26.3-informational?style=flat-square) ![Maintenance Track: bb_integrated](https://img.shields.io/badge/Maintenance_Track-bb_integrated-green?style=flat-square)
+![Version: 1.26.3-bb.1](https://img.shields.io/badge/Version-1.26.3--bb.1-informational?style=flat-square) ![AppVersion: 1.26.3](https://img.shields.io/badge/AppVersion-1.26.3-informational?style=flat-square) ![Maintenance Track: bb_integrated](https://img.shields.io/badge/Maintenance_Track-bb_integrated-green?style=flat-square)
 
 Helm chart for istio control plane
 
@@ -43,7 +43,13 @@ helm install istiod chart/
 |-----|------|---------|-------------|
 | networkPolicies.enabled | bool | `false` | Enable or disable the bundled network policies |
 | networkPolicies.controlPlaneCIDRs | list | `[]` | Configure which CIDRs istiod will be allowed to connect to when accessing the kube-apiserver; if none are specified, the chart will look up the default kubernetes EndpointSlice and use the addresses found there |
-| networkPolicies.additionalPolicies | list | `[]` | A list of additional network policies to create in the release namespace |
+| networkPolicies.egress | object | `{"defaults":{"allowInNamespace":{"enabled":false},"allowIstiod":{"enabled":false}},"from":{"istiod":{"to":{"definition":{"kubeAPI":true}}}}}` | A list of additional network policies to create in the release namespace |
+| networkPolicies.ingress.defaults.allowInNamespace.enabled | bool | `false` |  |
+| networkPolicies.ingress.to.istiod:15014.from.k8s.kiali/kiali | bool | `true` |  |
+| networkPolicies.ingress.to.istiod:15014.from.k8s.monitoring/prometheus | bool | `true` |  |
+| networkPolicies.ingress.to.istiod:[443,15017].from.cidr."0.0.0.0/0" | bool | `true` |  |
+| networkPolicies.ingress.to.istiod:[15010,15012].from.k8s.* | bool | `true` |  |
+| networkPolicies.additionalPolicies | list | `[]` |  |
 | additionalEnvoyFilters | list | `[]` | A list of additional EnvoyFilters to create in the release namespace |
 | monitoring.enabled | bool | `true` | Enable or disable the bundled monitoring components and network policies |
 | authservice.enabled | bool | `false` |  |

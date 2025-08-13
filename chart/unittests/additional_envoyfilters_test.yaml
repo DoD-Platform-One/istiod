@@ -1,0 +1,77 @@
+suite: Istio Additional Envoy Filter Test
+templates:
+  - templates/bigbang/istio/envoy-filters/additional.yaml
+tests:
+  - it: should create one additional envoy filter
+    set:
+      additionalEnvoyFilters:
+        - name: envoyfilter-myns-ext-authz
+          spec:
+            configPatches:
+            - applyTo: HTTP_FILTER
+              match:
+                context: SIDECAR_INBOUND
+              patch:
+                operation: ADD
+                filterClass: AUTHZ # This filter will run *after* the Istio authz filter.
+                value:
+                  name: envoy.filters.http.ext_authz
+                  typed_config:
+                    "@type": type.googleapis.com/envoy.extensions.filters.http.ext_authz.v3.ExtAuthz
+                    grpc_service:
+                      envoy_grpc:
+                        cluster_name: acme-ext-authz
+                      initial_metadata:
+                      - key: foo
+                        value: myauth.acme # required by local ext auth server.
+    asserts:
+      - hasDocuments:
+          count: 1
+      - equal:
+          path: spec.configPatches[0].match.context
+          value: SIDECAR_INBOUND
+  - it: should create two additional envoy filters
+    set:
+      additionalEnvoyFilters:
+        - name: envoyfilter-myns-ext-authz
+          spec:
+            configPatches:
+            - applyTo: HTTP_FILTER
+              match:
+                context: SIDECAR_INBOUND
+              patch:
+                operation: ADD
+                filterClass: AUTHZ # This filter will run *after* the Istio authz filter.
+                value:
+                  name: envoy.filters.http.ext_authz
+                  typed_config:
+                    "@type": type.googleapis.com/envoy.extensions.filters.http.ext_authz.v3.ExtAuthz
+                    grpc_service:
+                      envoy_grpc:
+                        cluster_name: acme-ext-authz
+                      initial_metadata:
+                      - key: foo
+                        value: myauth.acme # required by local ext auth server.
+        - name: envoyfilter-domain-match
+          spec:
+            configPatches:
+            - applyTo: VIRTUAL_HOST
+              match:
+                context: GATEWAY
+                routeConfiguration:
+                  vhost:
+                    domainName: 'foo.com'
+              patch:
+                operation: MERGE
+                value:
+                  rate_limits:
+                    actions:
+                      - request_headers:
+                          header_name: "authorization"
+                          descriptor_key: "jwt"
+                      - request_headers:
+                          header_name: ":path"
+                          descriptor_key: "path"
+    asserts:
+      - hasDocuments:
+          count: 2

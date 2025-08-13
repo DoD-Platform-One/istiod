@@ -1,0 +1,12 @@
+suite: Istio Peer Authentication Test
+templates:
+  - templates/bigbang/istio/peer-authentications/default.yaml
+tests:
+  - it: should create peer authentication in strict mode by default
+    asserts:
+      - equal:
+          path: metadata.name
+          value: default
+      - equal:
+          path: spec.mtls.mode
+          value: STRICT
