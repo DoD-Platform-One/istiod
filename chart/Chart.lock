@@ -1,9 +1,9 @@
 dependencies:
 - name: istiod
   repository: https://istio-release.storage.googleapis.com/charts
-  version: 1.26.3
+  version: 1.27.0
 - name: bb-common
   repository: oci://registry1.dso.mil/bigbang
   version: 0.5.0
-digest: sha256:649cd33936bec54855672cca720200f22faf67a0df1139de8304b08959b818a1
-generated: "2025-08-13T13:59:54.203013-05:00"
+digest: sha256:b0a4710c452544514756fb07c86dcbca5daf6fc5b453511add8abe45dd3428ad
+generated: "2025-08-15T09:38:47.182403-04:00"
