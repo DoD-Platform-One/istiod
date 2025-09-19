@@ -20,8 +20,8 @@
     {
       "customType": "regex",
       "description": "Update chart version to match upstream; append -bb.0",
-      "fileMatch": [
-        "^chart/Chart\\.yaml$"
+      "managerFilePatterns": [
+        "/^chart/Chart\\.yaml$/"
       ],
       "matchStrings": [
         "version:\\s+(?<currentValue>.+)-bb\\.\\d+"
@@ -34,8 +34,8 @@
     {
       "customType": "regex",
       "description": "Update chart appVersion to match upstream",
-      "fileMatch": [
-        "^chart/Chart\\.yaml$"
+      "managerFilePatterns": [
+        "/^chart/Chart\\.yaml$/"
       ],
       "matchStrings": [
         "appVersion:\\s+(?<currentValue>.+)"
@@ -48,8 +48,8 @@
     {
       "customType": "regex",
       "description": "Update big bang application versions",
-      "fileMatch": [
-        "^chart/Chart.yaml$"
+      "managerFilePatterns": [
+        "/^chart/Chart.yaml$/"
       ],
       "matchStrings": [
         "- Istio:\\s+(?<currentValue>.+)"
@@ -62,8 +62,8 @@
     {
       "customType": "regex",
       "description": "Update pilot image to match upstream",
-      "fileMatch": [
-        "^chart/Chart.yaml$"
+      "managerFilePatterns": [
+        "/^chart/Chart.yaml$/"
       ],
       "matchStrings": [
         "image: registry1.dso.mil\\/ironbank\\/opensource\\/istio\\/pilot:(?<currentValue>.+)"
@@ -76,8 +76,8 @@
     {
       "customType": "regex",
       "description": "Update proxyv2 image to match upstream",
-      "fileMatch": [
-        "^chart/Chart.yaml$"
+      "managerFilePatterns": [
+        "/^chart/Chart.yaml$/"
       ],
       "matchStrings": [
         "image: registry1.dso.mil\\/ironbank\\/opensource\\/istio\\/proxyv2:(?<currentValue>.+)"
@@ -90,8 +90,8 @@
     {
       "customType": "regex",
       "description": "Update tag in values to match upstream",
-      "fileMatch": [
-        "^chart/values.yaml$"
+      "managerFilePatterns": [
+        "/^chart/values.yaml$/"
       ],
       "matchStrings": [
         "tag:\\s+(?<currentValue>.+)"
