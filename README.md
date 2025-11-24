@@ -1,7 +1,7 @@
 <!-- Warning: Do not manually edit this file. See notes on gluon + helm-docs at the end of this file for more information. -->
 # istiod
 
-![Version: 1.27.3-bb.0](https://img.shields.io/badge/Version-1.27.3--bb.0-informational?style=flat-square) ![AppVersion: 1.27.3](https://img.shields.io/badge/AppVersion-1.27.3-informational?style=flat-square) ![Maintenance Track: bb_integrated](https://img.shields.io/badge/Maintenance_Track-bb_integrated-green?style=flat-square)
+![Version: 1.28.0-bb.0](https://img.shields.io/badge/Version-1.28.0--bb.0-informational?style=flat-square) ![AppVersion: 1.28.0](https://img.shields.io/badge/AppVersion-1.28.0-informational?style=flat-square) ![Maintenance Track: bb_integrated](https://img.shields.io/badge/Maintenance_Track-bb_integrated-green?style=flat-square)
 
 Helm chart for istio control plane
 
