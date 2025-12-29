@@ -93,6 +93,10 @@ hardened:
   enabled: false
   customAuthorizationPolicies: []
 
+istio:
+  ambient:
+    enabled: false
+
 # -- Values to pass to [the upstream istiod chart](https://github.com/istio/istio/blob/master/manifests/charts/istio-control/istio-discovery/values.yaml)
 # @default -- Upstream chart values
 upstream:
@@ -106,4 +110,4 @@ upstream:
 
   global:
     hub: registry1.dso.mil/ironbank/opensource/istio
-    tag: 1.28.0
+    tag: 1.28.1
