@@ -774,23 +774,6 @@
       "type": "object",
       "additionalProperties": true
     },
-    "istio": {
-      "type": "object",
-      "description": "Istio configuration",
-      "additionalProperties": true,
-      "properties": {
-        "ambient": {
-          "type": "object",
-          "description": "Ambient mesh configuration",
-          "properties": {
-            "enabled": {
-              "type": "boolean",
-              "description": "Enable or disable ambient mesh"
-            }
-          }
-        }
-      }
-    },
     "upstream": {
       "type": "object",
       "description": "Values to pass to the upstream istiod chart (https://github.com/istio/istio/blob/master/manifests/charts/istio-control/istio-discovery/values.yaml)",
