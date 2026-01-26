@@ -1,0 +1,94 @@
+{
+    "extends": [
+      "local>platform-one/big-bang/pipeline-templates/renovate-runner"
+    ],
+    "baseBranches": [
+        "main"
+    ],
+    "configWarningReuseIssue": false,
+    "dependencyDashboard": true,
+    "dependencyDashboardTitle": "Renovate: Upgrade Istiod Package Dependencies",
+    "draftPR": true,
+    "enabledManagers": [
+        "custom.regex",
+        "helmv3"
+    ],
+    "ignorePaths": [
+        "chart/charts/**"
+    ],
+    "labels": [
+        "istiod",
+        "Big Bang Core",
+        "Package Sustainment",
+        "kind::maintenance",
+        "renovate"
+    ],
+    "packageRules": [
+      {
+        "matchDatasources": ["docker", "helm"],
+        "matchManagers": ["custom.regex", "helmv3"],
+        "groupName": "Istiod"
+      }
+    ],
+    "customManagers": [
+        {
+          "customType": "regex",
+          "description": "Update tag in values to match upstream",
+          "managerFilePatterns": [
+            "/^chart/values.yaml$/"
+          ],
+          "matchStrings": [
+            "tag:\\s+(?<currentValue>.+)"
+          ],
+          "autoReplaceStringTemplate": "tag: {{newValue}}",
+          "depNameTemplate": "istiod",
+          "datasourceTemplate": "helm",
+          "registryUrlTemplate": "https://istio-release.storage.googleapis.com/charts"
+        },
+        {
+          // Updates appVersion and applicationVersions annotation in Chart.yaml
+          "customType": "regex",
+          "managerFilePatterns": [
+              "/^chart/Chart\\.yaml$/"
+          ],
+          "matchStrings": [
+              "- Istio:\\s*(?<currentValue>.+)",
+              "appVersion:[^\\S\\r\\n]+(?<currentValue>.+)"
+          ],
+          "depNameTemplate": "istiod",
+          "datasourceTemplate": "helm",
+          "registryUrlTemplate": "https://istio-release.storage.googleapis.com/charts"
+        },
+        {
+          // Updates IronBank image references in Chart.yaml
+          "customType": "regex",
+          "managerFilePatterns": [
+              "/^chart/Chart\\.yaml$/"
+          ],
+          "matchStrings": [
+              "image:[^\\S\\r\\n]+(?<depName>.+):(?<currentValue>.+)"
+          ],
+          "datasourceTemplate": "docker"
+        }
+    ],
+    "separateMajorMinor": false,
+    "postUpdateOptions": [
+        "helmUpdateSubChartArchives"
+    ],
+    "postUpgradeTasks": {
+      "commands": [
+        // Use match-chart-yaml-appversion (NOT bump-chart-yaml) because istiod's
+        // chart version stays in sync with appVersion (e.g., both are 1.28.x).
+        // bump-chart-yaml incorrectly bumps minor version on patch updates.
+        // See: https://repo1.dso.mil/big-bang/product/packages/istiod/-/issues/61
+        "match-chart-yaml-appversion",
+        "bump-changelog '{{#each upgrades}}- {{depName}} {{currentVersion}} -> {{newVersion}}\\n{{/each}}'",
+        "regenerate-helm-docs"
+      ],
+      "fileFilters": [
+        "chart/Chart.yaml",
+        "README.md",
+        "CHANGELOG.md"
+      ]
+    }
+}
