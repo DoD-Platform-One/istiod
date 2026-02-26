@@ -1,6 +1,9 @@
 networkPolicies:
   # -- Enable or disable the bundled network policies
   enabled: false
+
+  prependReleaseName: true
+
   # -- Configure which CIDRs istiod will be allowed to connect to
   # when accessing the kube-apiserver;
   # if none are specified, the chart will look up the default kubernetes
@@ -88,10 +91,23 @@ defaultSecurityHeaders:
   # -- Enable or disable the default security headers
   enabled: true
 
-hardened:
-  # -- Enable or disable the hardened Istio configuration
-  enabled: false
-  customAuthorizationPolicies: []
+istio:
+  enabled: true
+
+  prependReleaseName: true
+
+  sidecar:
+    enabled: true
+    outboundTrafficPolicyMode: "REGISTRY_ONLY"
+  mtls:
+    mode: STRICT
+  serviceEntries:
+    custom: []
+
+  authorizationPolicies:
+    enabled: true
+    generateFromNetpol: true
+    custom: []
 
 # -- Values to pass to [the upstream istiod chart](https://github.com/istio/istio/blob/master/manifests/charts/istio-control/istio-discovery/values.yaml)
 # @default -- Upstream chart values

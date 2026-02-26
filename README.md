@@ -1,7 +1,7 @@
 <!-- Warning: Do not manually edit this file. See notes on gluon + helm-docs at the end of this file for more information. -->
 # istiod
 
-![Version: 1.29.0-bb.0](https://img.shields.io/badge/Version-1.29.0--bb.0-informational?style=flat-square) ![AppVersion: 1.29.0](https://img.shields.io/badge/AppVersion-1.29.0-informational?style=flat-square) ![Maintenance Track: bb_integrated](https://img.shields.io/badge/Maintenance_Track-bb_integrated-green?style=flat-square)
+![Version: 1.29.0-bb.1](https://img.shields.io/badge/Version-1.29.0--bb.1-informational?style=flat-square) ![AppVersion: 1.29.0](https://img.shields.io/badge/AppVersion-1.29.0-informational?style=flat-square) ![Maintenance Track: bb_integrated](https://img.shields.io/badge/Maintenance_Track-bb_integrated-green?style=flat-square)
 
 Helm chart for istio control plane
 
@@ -55,8 +55,14 @@ helm install istiod chart/
 | authservice.enabled | bool | `false` |  |
 | mtls.mode | string | `"STRICT"` | Set the mTLS mode for the istio-system namespace |
 | defaultSecurityHeaders.enabled | bool | `true` | Enable or disable the default security headers |
-| hardened.enabled | bool | `false` | Enable or disable the hardened Istio configuration |
-| hardened.customAuthorizationPolicies | list | `[]` |  |
+| istio.enabled | bool | `true` |  |
+| istio.sidecar.enabled | bool | `true` |  |
+| istio.sidecar.outboundTrafficPolicyMode | string | `"REGISTRY_ONLY"` |  |
+| istio.mtls.mode | string | `"STRICT"` |  |
+| istio.serviceEntries.custom | list | `[]` |  |
+| istio.authorizationPolicies.enabled | bool | `true` |  |
+| istio.authorizationPolicies.generateFromNetpol | bool | `true` |  |
+| istio.authorizationPolicies.custom | list | `[]` |  |
 | upstream | object | Upstream chart values | Values to pass to [the upstream istiod chart](https://github.com/istio/istio/blob/master/manifests/charts/istio-control/istio-discovery/values.yaml) |
 
 ## Contributing
