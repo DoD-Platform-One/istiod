@@ -8,7 +8,7 @@ tests:
         enabled: true
     documentSelector:
       path: metadata.name
-      value: allow-ingress-to-istiod-tcp-port-15014-from-ns-kiali-pod-kiali
+      value: release-name-allow-ingress-to-istiod-tcp-port-15014-from-ns-kiali-pod-kiali
     asserts:
       - equal:
           path: spec
@@ -35,7 +35,7 @@ tests:
         enabled: true
     documentSelector:
       path: metadata.name
-      value: allow-ingress-to-istiod-tcp-port-15014-from-ns-monitoring-pod-prometheus
+      value: release-name-allow-ingress-to-istiod-tcp-port-15014-from-ns-monitoring-pod-prometheus
     asserts:
       - equal:
           path: spec
@@ -62,7 +62,7 @@ tests:
         enabled: true
     documentSelector:
       path: metadata.name
-      value: allow-ingress-to-istiod-tcp-ports-15010-15012-from-any-ns-any-pod
+      value: release-name-allow-ingress-to-istiod-tcp-ports-15010-15012-from-any-ns-any-pod
     asserts:
       - equal:
           path: spec
@@ -85,13 +85,16 @@ tests:
     set:
       networkPolicies:
         enabled: true
+      istio:
+        authorizationPolicies:
+          generateFromNetpol: false
     documentSelector:
       path: metadata.name
-      value: allow-ingress-to-istiod-tcp-ports-443-15017-from-anywhere
+      value: release-name-allow-ingress-to-istiod-tcp-ports-443-15017-from-anywhere
     asserts:
       - equal:
           path: spec
-          value: 
+          value:
             ingress:
             - from:
               - ipBlock:
