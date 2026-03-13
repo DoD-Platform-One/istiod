@@ -122,4 +122,4 @@ upstream:
 
   global:
     hub: registry1.dso.mil/ironbank/opensource/istio
-    tag: 1.29.0
+    tag: 1.29.1

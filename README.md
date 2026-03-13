@@ -1,7 +1,7 @@
 <!-- Warning: Do not manually edit this file. See notes on gluon + helm-docs at the end of this file for more information. -->
 # istiod
 
-![Version: 1.29.0-bb.1](https://img.shields.io/badge/Version-1.29.0--bb.1-informational?style=flat-square) ![AppVersion: 1.29.0](https://img.shields.io/badge/AppVersion-1.29.0-informational?style=flat-square) ![Maintenance Track: bb_integrated](https://img.shields.io/badge/Maintenance_Track-bb_integrated-green?style=flat-square)
+![Version: 1.29.1-bb.0](https://img.shields.io/badge/Version-1.29.1--bb.0-informational?style=flat-square) ![AppVersion: 1.29.1](https://img.shields.io/badge/AppVersion-1.29.1-informational?style=flat-square) ![Maintenance Track: bb_integrated](https://img.shields.io/badge/Maintenance_Track-bb_integrated-green?style=flat-square)
 
 Helm chart for istio control plane
 
@@ -42,6 +42,7 @@ helm install istiod chart/
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | networkPolicies.enabled | bool | `false` | Enable or disable the bundled network policies |
+| networkPolicies.prependReleaseName | bool | `true` |  |
 | networkPolicies.controlPlaneCIDRs | list | `[]` | Configure which CIDRs istiod will be allowed to connect to when accessing the kube-apiserver; if none are specified, the chart will look up the default kubernetes EndpointSlice and use the addresses found there |
 | networkPolicies.egress | object | `{"defaults":{"allowInNamespace":{"enabled":false},"allowIstiod":{"enabled":false}},"from":{"istiod":{"to":{"definition":{"kubeAPI":true}}}}}` | A list of additional network policies to create in the release namespace |
 | networkPolicies.ingress.defaults.allowInNamespace.enabled | bool | `false` |  |
@@ -56,6 +57,7 @@ helm install istiod chart/
 | mtls.mode | string | `"STRICT"` | Set the mTLS mode for the istio-system namespace |
 | defaultSecurityHeaders.enabled | bool | `true` | Enable or disable the default security headers |
 | istio.enabled | bool | `true` |  |
+| istio.prependReleaseName | bool | `true` |  |
 | istio.sidecar.enabled | bool | `true` |  |
 | istio.sidecar.outboundTrafficPolicyMode | string | `"REGISTRY_ONLY"` |  |
 | istio.mtls.mode | string | `"STRICT"` |  |
